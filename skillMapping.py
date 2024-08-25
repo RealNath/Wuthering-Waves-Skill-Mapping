@@ -17,7 +17,7 @@ def mapSkill():
         for i in range(len(valueList)):
             skillDesc = skillDesc.replace(f"{{{i}}}", valueList[i])
     
-    if " --wiki" in value:
+    if statusWiki:
         elements = {"<color=Highlight>":"{{Color|help|", "<color=Title>":"{{Color|menu|", "<color=Fire>":"", "<color=Ice>":"", "<color=Light>":"", "<color=Thunder>":"", "<color=Wind>":"", "<color=Dark>":"", "</color>":"|nobold=1}}", "<size=10>":"", "<size=10>":"", "</size>":""}
         for k, v in elements.items():
             skillDesc = skillDesc.replace(k, v)
@@ -37,6 +37,10 @@ def mapSkill():
     print(skillDesc)
 
 value = input("Enter ID or skill name (add '--wiki' for Fandom Wiki format) - ").casefold()
+if " --wiki" in value:
+    value = value.replace(" --wiki","")
+    statusWiki = True
+
 if value.isnumeric() == True:
     id = int(value)
     textLabel = skill.loc[skill["Id"] == id, 'SkillDescribe'].values[0]
