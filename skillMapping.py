@@ -18,7 +18,7 @@ def mapSkill():
             skillDesc = skillDesc.replace(f"{{{i}}}", valueList[i])
     
     if statusWiki:
-        elements = {"<color=Highlight>":"{{Color|help|", "<color=Title>":"{{Color|menu|", "<color=Fire>":"", "<color=Ice>":"", "<color=Light>":"", "<color=Thunder>":"", "<color=Wind>":"", "<color=Dark>":"", "</color>":"|nobold=1}}", "<size=10>":"", "<size=10>":"", "</size>":""}
+        elements = {"<color=Highlight>":"{{Color|help|", "<color=Title>":"{{Color|menu|", "<color=Fire>":"", "<color=Ice>":"", "<color=Light>":"", "<color=Thunder>":"", "<color=Wind>":"", "<color=Dark>":"", "</color>":"|nobold=1}}", "<size=40>":"", "<size=10>":"", "</size>":""}
         for k, v in elements.items():
             skillDesc = skillDesc.replace(k, v)
         #replace break lines with "<br />",break line after every "<br />",
@@ -27,7 +27,7 @@ def mapSkill():
         skillDesc = skillDesc.replace("<br />", "<br /><!--\n-->")
         skillDesc = skillDesc.replace("<br /><!--\n--> <br /><!--\n-->", "<br /><br /><!--\n\n-->")
     else:
-        elements = {"<color=Highlight>":"", "<color=Title>":"", "<color=Fire>":"", "<color=Ice>":"", "<color=Light>":"", "<color=Thunder>":"", "<color=Wind>":"", "<color=Dark>":"", "</color>":"", "<size=10>":"", "<size=10>":"", "</size>":""}
+        elements = {"<color=Highlight>":"", "<color=Title>":"", "<color=Fire>":"", "<color=Ice>":"", "<color=Light>":"", "<color=Thunder>":"", "<color=Wind>":"", "<color=Dark>":"", "</color>":"", "<size=40>":"", "<size=10>":"", "</size>":""}
         for k, v in elements.items():
             skillDesc = skillDesc.replace(k, v)
 
