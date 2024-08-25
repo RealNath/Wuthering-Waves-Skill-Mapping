@@ -25,7 +25,7 @@ def mapSkill():
         #then undo the break if there are 2 "<br />" next to each other
         skillDesc = skillDesc.replace("\n","<br />")
         skillDesc = skillDesc.replace("<br />", "<br /><!--\n-->")
-        skillDesc = skillDesc.replace("<br /><!--\n--><br /><!--\n-->", "<br /><br /><!--\n\n-->")
+        skillDesc = skillDesc.replace("<br /><!--\n--> <br /><!--\n-->", "<br /><br /><!--\n\n-->")
     else:
         elements = {"<color=Highlight>":"", "<color=Title>":"", "<color=Fire>":"", "<color=Ice>":"", "<color=Light>":"", "<color=Thunder>":"", "<color=Wind>":"", "<color=Dark>":"", "</color>":"", "<size=10>":"", "<size=10>":"", "</size>":""}
         for k, v in elements.items():
@@ -40,6 +40,8 @@ value = input("Enter ID or skill name (add '--wiki' for Fandom Wiki format) - ")
 if " --wiki" in value:
     value = value.replace(" --wiki","")
     statusWiki = True
+else:
+    statusWiki = False
 
 if value.isnumeric() == True:
     id = int(value)
