@@ -1,5 +1,5 @@
 # Wuthering Waves Skill Mapping
-A simple program (Python project) I made out of boredom to automatically format character's skill (kits) using Dimbreath's WutheringData.
+A simple program (Python project) I made out of boredom to automatically format character's skill (kits) from a certain anime game using Dimbreath's WutheringData.
 
 ## How to Use
 * Download [Skill.json](https://github.com/Dimbreath/WutheringData/blob/master/ConfigDB/Skill.json) and [MultiText.json](https://github.com/Dimbreath/WutheringData/blob/master/TextMap/en/MultiText.json) from Wuthering Data.
