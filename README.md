@@ -18,5 +18,8 @@ Summon <color=Highlight>Inklit Spirits</color> for assistance.\nCan be cast in m
 ```
 I want to find where the numbers `{0}`, `{1}`, etc are linked to. And I want to convert `<color=Highlight>Inklit Spirits</color>`, etc to the wiki format. Doing it manually for many descriptions is tiring, so I made a Python code to hone my programming skills too.
 
+## Why do I need to download the 2 JSON files manually?
+My plan was to fetch the data/text from each file's raw.githubusercontent.com at first, but there are thousands of lines, even MultiText.json has 75,278 data (key-value pairs). It takes forever (probably crash? not even Ctrl+C works), whether using the urllib or requests library.
+
 ## Credits
 [Wuthering Data](https://github.com/Dimbreath/WutheringData) by Dimbreath
