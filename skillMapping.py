@@ -14,10 +14,21 @@ else:
         print("Please download Skill.json and MultiText.json (EN) from WutheringData")
     else:
         def mapSkill():
+            #Fetch skill description
             skillDesc = multiText[textLabel]
+            #Fetch skill name
             labelName = "Skill_"+str(id)+"_SkillName"
             skillName = multiText[labelName]
-            
+            #Fetch character name
+            charNameID = skill.loc[skill["Id"] == id, 'SkillGroupId'].values[0]
+            labelCharNameID = "RoleInfo_"+str(charNameID)+"_Name"
+            charName = multiText[labelCharNameID]
+            #Fetch skill type
+            skillTypeID = skill.loc[skill["Id"] == id, 'SkillType'].values[0]
+            labelSkillType = "SkillType_"+str(skillTypeID)+"_TypeName"
+            skillType = multiText[labelSkillType]
+
+            #merge numbers with skill description
             valueList = skill.loc[skill["Id"] == id, 'SkillDetailNum'].values[0]
             if valueList == None:
                 pass
@@ -40,7 +51,7 @@ else:
                     skillDesc = skillDesc.replace(k, v)
 
             print("\n")
-            print(skillName)
+            print(charName+' - '+skillType+' - '+skillName)
             print("==========")
             print(skillDesc)
             print("==========\n")
