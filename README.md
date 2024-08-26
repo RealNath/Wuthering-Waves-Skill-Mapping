@@ -1,4 +1,4 @@
-# Wuthering Waves Skill Mapping
+# Wuthering Waves Skill Formatter and Mapper
 A simple program (Python project) I made out of boredom to automatically format character's skill (kits) from Wuthering Waves using Dimbreath's WutheringData.
 
 ## How to Use
