@@ -66,9 +66,12 @@ else:
                 statusWiki = False
 
             if value.isnumeric() == True:
-                id = int(value)
-                textLabel = skill.loc[skill["Id"] == id, 'SkillDescribe'].values[0]
-                mapSkill()    
+                try:
+                    id = int(value)
+                    textLabel = skill.loc[skill["Id"] == id, 'SkillDescribe'].values[0]
+                    mapSkill()
+                except (IndexError, KeyError):
+                    print("Result not found.")
             else:
                 multiTextCsInsens = multiText.astype(str).apply(str.casefold)
                 textLabelNames = multiTextCsInsens.iloc[np.where(multiTextCsInsens == value)].index.tolist()
