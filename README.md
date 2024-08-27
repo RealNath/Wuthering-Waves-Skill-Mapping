@@ -2,7 +2,7 @@
 A simple program (Python project) I made out of boredom to automatically format character's skill (kits) from Wuthering Waves using Dimbreath's WutheringData.
 
 ## How to Use
-* Download or update [Skill.json](https://github.com/Dimbreath/WutheringData/blob/master/ConfigDB/Skill.json) and [MultiText.json](https://github.com/Dimbreath/WutheringData/blob/master/TextMap/en/MultiText.json) from downloadjson.bat
+* Download or update [Skill.json](https://github.com/Dimbreath/WutheringData/blob/master/ConfigDB/Skill.json) and [MultiText.json](https://github.com/Dimbreath/WutheringData/blob/master/TextMap/en/MultiText.json) from retrieveJson.bat
   * Or download them manually from WutheringData. Put it in the same directory/folder as the Python code.
 * Run either the executable (.exe) or Python file.
   * **.exe** - run instantly (double click it)
