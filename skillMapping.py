@@ -8,11 +8,17 @@ except ImportError:
     print("Pandas library not installed yet. Make sure NumPy is installed too.")
 else:
     try:
-        skill = pd.read_json('Skill.json')
-        multiText = pd.read_json('MultiText.json', typ='series')
+        skill = pd.read_json('json/Skill.json')
+        multiText = pd.read_json('json/MultiText.json', typ='series')
     except FileNotFoundError:
-        print("Please download Skill.json and MultiText.json (EN) from WutheringData")
+        print("Please download Skill.json and MultiText.json (EN)")
     else:
+        def getValue2(jsonFile, key1, value1, key2):
+            value2 = jsonFile.loc[jsonFile[key1] == value1, key2]
+            if len(value2) == 1:
+                return value2.values[0]
+            else:
+                return value2
         def mapSkill():
             #Fetch skill description
             skillDesc = multiText[textLabel]
@@ -20,16 +26,16 @@ else:
             labelName = "Skill_"+str(id)+"_SkillName"
             skillName = multiText[labelName]
             #Fetch character name
-            charNameID = skill.loc[skill["Id"] == id, 'SkillGroupId'].values[0]
+            charNameID = getValue2(skill, 'Id', id, 'SkillGroupId')
             labelCharNameID = "RoleInfo_"+str(charNameID)+"_Name"
             charName = multiText[labelCharNameID]
             #Fetch skill type
-            skillTypeID = skill.loc[skill["Id"] == id, 'SkillType'].values[0]
+            skillTypeID = getValue2(skill, 'Id', id, 'SkillType')
             labelSkillType = "SkillType_"+str(skillTypeID)+"_TypeName"
             skillType = multiText[labelSkillType]
 
             #merge numbers with skill description
-            valueList = skill.loc[skill["Id"] == id, 'SkillDetailNum'].values[0]
+            valueList = getValue2(skill, 'Id', id, 'SkillDetailNum')
             if valueList == None:
                 pass
             else:
@@ -51,14 +57,14 @@ else:
                     skillDesc = skillDesc.replace(k, v)
 
             print("\n")
-            print(charName+' - '+skillType+' - '+skillName)
+            print(charName+' - '+skillType+' - '+skillName+' - '+str(id))
             print("==========")
             print(skillDesc)
             print("==========\n")
 
         while True:
             textLabel = None
-            value = input("Enter ID or skill name (add '--wiki' for Fandom Wiki format) - ").casefold()
+            value = input("Enter skill ID or skill/char name (add '--wiki' for Fandom Wiki format) - ").casefold()
             if " --wiki" in value:
                 value = value.replace(" --wiki","")
                 statusWiki = True
@@ -76,12 +82,24 @@ else:
                 multiTextCsInsens = multiText.astype(str).apply(str.casefold)
                 textLabelNames = multiTextCsInsens.iloc[np.where(multiTextCsInsens == value)].index.tolist()
                 for textLabelName in textLabelNames:
+                    #if value is skill name
                     if (textLabelName[:6] == 'Skill_') and (textLabelName[-10:] == '_SkillName'):
                         textLabel = textLabelName.replace("_SkillName", "_SkillDescribe")
+                        id = [int(i) for i in textLabel.split('_') if i.isdigit()]
+                        id = id[0]
+                        mapSkill()
                         break
+                    #if value is character name
+                    elif (textLabelName[:9] == 'RoleInfo_') and (textLabelName[-5:] == '_Name'):
+                        charID = [int(i) for i in textLabelName.split('_') if i.isdigit()]
+                        charID = charID[0]
+                        ids = getValue2(skill, 'SkillGroupId', charID, 'Id')
+                        for id in ids:
+                            try:
+                                textLabel = "Skill_"+str(id)+"_SkillDescribe"
+                                mapSkill()
+                            except KeyError:
+                                pass
+                #if value not found
                 if textLabel == None:
                     print("Result not found.")
-                else:
-                    id = [int(i) for i in textLabel.split('_') if i.isdigit()]
-                    id = id[0]
-                    mapSkill()
