@@ -4,7 +4,7 @@ Supports searching by character's name, skill name, skill ID
 
 ## How to Use
 * Download or update [Skill.json](https://github.com/Dimbreath/WutheringData/blob/master/ConfigDB/Skill.json) and [MultiText.json](https://github.com/Dimbreath/WutheringData/blob/master/TextMap/en/MultiText.json) from retrieveJson.bat
-  * Or download them manually from WutheringData. Put it in the same directory/folder as the Python code.
+  * Or download them manually from WutheringData. Put it in the json folder.
 * Run either the executable (.exe) or Python file.
   * **.exe** - run instantly (double click it)
   * **Python** - Download Python (obviously), Pandas (`pip install pandas`), NumPy (comes with Pandas); open command line, execute: `python skillmapping.py`
